@@ -1,0 +1,18 @@
+---
+- name: Create user on a linux server
+  hosts: aws_ec2
+  become: yes
+  gather_facts: false
+  vars:
+    - user: opsschool
+    - password: 0p$Sch00l
+  tasks:
+      - name: Create a login user
+        user:
+          name: "{{ user }}"
+          password: "{{ password | password_hash('sha512') }}"
+          state: present
+          home: /home/opsschool
+          append: yes
+          shell: /bin/bash
+          ssh_key_file: "~/.ssh/ansible_key_8.pem"

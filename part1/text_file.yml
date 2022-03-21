@@ -1,0 +1,27 @@
+- hosts: all
+  tasks:
+  - name: create a file
+    file:
+      path: /home/ubuntu/text.txt
+      state: touch
+
+  - name: add contnet
+    blockinfile:
+      path: /home/ubuntu/text.txt
+      block: |
+        I am a text file I exist on the nodes
+  - name: Create a tar.gz archive of text.txt.
+    archive:
+      path: /home/ubuntu/text.txt
+      dest: /home/ubuntu/text.tar.gz
+      format: gz
+      force_archive: true
+  - name: Remove file (delete file)
+    file:
+      path: /home/ubuntu/text.txt
+      state: absent
+
+  - name: Download file from a file path
+    get_url:
+      url: http://icanhazip.com
+      dest: /home/ubuntu/index.html

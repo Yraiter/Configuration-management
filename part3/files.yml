@@ -1,0 +1,12 @@
+---
+- name: Update web servers
+  hosts: aws_ec2
+
+  tasks:
+  - name: Ensure apache is at the latest version
+    file:
+      path: "{{ item }}"
+      state: directory
+    loop:
+      - ~/opsschool
+      - ~/opsschool/ansible

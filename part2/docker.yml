@@ -1,0 +1,60 @@
+---
+- hosts: aws_ec2
+  become: true
+  tasks:
+  - name: Set up the repository
+    apt:
+      name: "{{item}}"
+      state: latest
+      update_cache: yes
+    loop:
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+
+  - name: add GPG key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: add docker repository to apt
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu bionic stable
+      state: present
+
+  - name: install docker
+    apt:
+      name: "{{item}}"
+      state: latest
+      update_cache: yes
+    loop:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    notify:
+      - restart docker
+  - name: validate docker state
+    service:
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: delete nginx docker continer if e exist
+    shell:
+      docker rm -f ops_nginx
+    ignore_errors: yes
+
+  - name: Run nginx image
+    shell:
+      docker run -it -d --name ops_nginx -p 8080:80 nginx
+
+  - name: restart nginx image
+    shell:
+      docker restart ops_nginx
+
+  handlers:
+    - name: restart docker
+      service:
+        name: docker
+        state: restarted
