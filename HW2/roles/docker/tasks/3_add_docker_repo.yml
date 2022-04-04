@@ -1,0 +1,15 @@
+---
+ - name: Add Docker Repository for UBUNTU
+   apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu bionic stable
+      state: present
+   when: ansible_distribution == 'Ubuntu'
+
+ - name: Download docker repository for RedHat
+   yum_repository:
+       name: docker-repo
+       description: "repo for docker"
+       baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+       enabled: yes
+       gpgcheck: no
+   when: ansible_facts['os_family'] == 'RedHat'

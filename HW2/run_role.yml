@@ -1,0 +1,6 @@
+---
+- hosts: aws_ec2
+  remote_user: "{{ 'ubuntu' if (platform_details == 'Linux/UNIX') else ('ec2-user') }}"
+  become: true
+  roles:
+    - HW2

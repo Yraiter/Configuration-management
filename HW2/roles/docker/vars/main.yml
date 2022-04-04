@@ -1,0 +1,11 @@
+---
+ install_packages:
+   - ca-certificates
+   - curl
+   - gnupg
+   - lsb-release
+   - python3-pip
+
+ install_pack: [ca-certificates, curl, gnupg, lsb-release, python3-pip]
+
+ docker_installation: [docker-ce, docker-ce-cli, containerd.io]
