@@ -1,0 +1,9 @@
+---
+- name: Create systemd-resolved configuration
+  copy:
+    src: resolved.conf
+    dest: /etc/systemd/resolved.conf
+    mode: "0644"
+  notify:
+    - Restart systemd-resolved service
+

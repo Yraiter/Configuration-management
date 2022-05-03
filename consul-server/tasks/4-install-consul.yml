@@ -1,0 +1,60 @@
+---
+- name: Create folder for consul
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: consul
+    group: consul
+    mode: 0755
+  with_items:
+    - /opt/consul
+    - /etc/consul.d
+    - /run/consul
+
+
+- name: add Hashicorp's official GPG key
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    state: present
+
+- name: add Hashicorp main repository to apt
+  apt_repository:
+    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ansible_distribution_release}} main"
+    state: present
+
+- name: install consul
+  apt:
+    name:
+      - "consul={{consul_version }}"
+    state: present
+    update_cache: yes
+
+- name: configure consul
+  become: yes
+  become_user: consul
+#  become_user: root
+  template:
+    src: consul.cfg.j2
+    dest: "{{ consul_configuration_file_path }}"
+  notify: restart consul
+
+
+- name: configure consul service
+  copy:
+    src: consul.service
+    dest: "{{ consul_service_conf_file_path }}"
+  notify: restart consul
+
+
+- name: Enable consul service
+  systemd:
+    service: consul.service
+    enabled: true
+    state: restarted
+  notify: restart consul
+
+
+
+
+
+
