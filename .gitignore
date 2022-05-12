@@ -3,3 +3,7 @@
 *.idea/*
 .gitignore
 /config
+/.idea
+/config.*
+/HW1
+/HW2
