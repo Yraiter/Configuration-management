@@ -1,0 +1,11 @@
+- name: Create consul group
+  group:
+    name: consul
+    state: present
+    system: true
+
+- name: Create consul user
+  user:
+    name: consul
+    group: consul
+    state: present

@@ -1,0 +1,21 @@
+---
+- name: install dnsmasq
+  apt:
+    name:
+      - dnsmasq
+    state: present
+    update_cache: yes
+
+- name: Enable and restart dnsmasq service
+  service:
+    name: dnsmasq
+    enabled: yes
+
+
+- name: configure dnsmasq
+  copy:
+    src: ./files/dnsmasq.conf
+    dest: "{{ dnsmasq_configuration_file }}"
+    mode: 0644
+  notify:
+    - Restart dnsmasq service
