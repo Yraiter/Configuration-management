@@ -1,7 +1,0 @@
----
-# tasks file for HW2
- - include_tasks: 1_package_install.yml
- - include_tasks: 2_add_gpg.yml
- - include_tasks: 3_add_docker_repo.yml
- - include_tasks: 4_install_docker.yml
- - include_tasks: 5_docker.yml
