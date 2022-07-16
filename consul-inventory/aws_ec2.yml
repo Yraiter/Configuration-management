@@ -5,8 +5,8 @@ filters:
   tag:Name:
     - Consul*
     - jenkins*
-    - bastion*
     - Ansible*
+    - bastion*
 groups:
   consul_server: "'true' in tags.consul_server"
   consul_agent: "'false' in tags.consul_server"
