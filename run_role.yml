@@ -1,0 +1,12 @@
+---
+- hosts: aws_ec2
+  become: true
+  roles:
+    - consul-server
+- hosts: aws_ec2
+  become: true
+  roles:
+    - node-exporter
+
+
+
