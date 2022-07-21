@@ -2,8 +2,13 @@ filebeat.inputs:
   - type: log
     enabled: false
     paths:
-      - /var/log/auth.log
-
+       - /var/log/*.log
+       - /var/log/auth.log
+       - /var/log/syslog
+  - type: container
+    enabled: false
+    paths:
+      - "/var/lib/docker/containers/*/*.log"
 filebeat.modules:
   - module: system
     syslog:
@@ -16,7 +21,6 @@ filebeat.config.modules:
   reload.enabled: false
 
 setup.dashboards.enabled: true
-
 setup.template.name: "filebeat"
 setup.template.pattern: "filebeat-*"
 setup.template.settings:
@@ -28,10 +32,10 @@ processors:
   - add_cloud_metadata: ~
 
 output.elasticsearch:
-  hosts: ["project-elk-0.node.consul:9200"]
+  hosts: ["elk-0.node.consul:9200"]
   index: "filebeat-%{[agent.version]}-%{+yyyy.MM.dd}"
 
 setup.kibana:
-  host: "project-elk-0.node.consul:5601"
-  protocol: "http"
+  host: "kibana.yair.live"
+  protocol: "https"
   ssl.enabled: false

@@ -99,3 +99,14 @@
     - restart consul service
   tags:
     - include_elk_role
+
+- name: copy elk consul service file
+  copy:
+    src: ./files/kibana-service.json
+    dest: /etc/consul.d/
+    group: consul
+    owner: consul
+  notify:
+    - restart consul service
+  tags:
+    - include_elk_role
