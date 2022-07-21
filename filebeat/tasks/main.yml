@@ -32,3 +32,14 @@
   tags:
     - install_filebeat_services
     - configure_filebeat
+
+- name: copy filebeat consul service file
+  copy:
+    src: ./files/filebeat-service.json
+    dest: /etc/consul.d/
+    group: consul
+    owner: consul
+  notify:
+    - restart consul service
+  tags:
+    - include_elk_role
