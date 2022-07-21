@@ -1,0 +1,21 @@
+---
+- name: opsschool final project
+  hosts:  aws_ec2
+  become: true
+  vars:
+    allow_world_readable_tmpfiles: true
+  tasks:
+    - name: include consul
+      include_role:
+       name: consul-server
+      when: inventory_hostname in lookup('inventory_hostnames', 'consul_server:consul_agent')
+    - name: install node exporter
+      include_role:
+       name: node-exporter
+    - name: install-elk
+      include_role:
+        name: elk
+      when : ( inventory_hostname  in groups.elk_server )
+    - name: install-filebeat
+      include_role:
+        name: filebeat
