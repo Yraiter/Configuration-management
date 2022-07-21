@@ -24,4 +24,4 @@
     service_port: "22"
     interval: 10s
   notify: restart consul
-  when : ( inventory_hostname  == 'jenkins_agent')
+  when : ( inventory_hostname  =! 'jenkins-server')
