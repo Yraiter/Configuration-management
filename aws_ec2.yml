@@ -12,7 +12,7 @@ groups:
   consul_server: "'true' in tags.consul_server"
   consul_agent: "'false' in tags.consul_server"
   jenkins_server: "'true' in tags.jenkins_server"
-  jenkins_agent: "'false' in tags.jenkins_server"
+  jenkins_agent: "'false' in tags.jenkins_agent"
   elk_server:    "'true' in tags.elk_server"
 keyed_groups:
   - key: tags.instance_type

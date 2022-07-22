@@ -36,6 +36,6 @@ output.elasticsearch:
   index: "filebeat-%{[agent.version]}-%{+yyyy.MM.dd}"
 
 setup.kibana:
-  host: "kibana.yair.live"
-  protocol: "https"
+  host: "elk-0.node.consul:5601"
+  protocol: "http"
   ssl.enabled: false

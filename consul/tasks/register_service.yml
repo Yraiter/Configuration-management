@@ -12,7 +12,7 @@
 
 - name: register jenkins-server with http port 8080
   consul:
-    service_name: "{{ inventory_hostname }}"
+    service_name: "{{ inventory_hostname } - yair"
     service_port: "8080" 
     interval: 10s
     http: http://localhost:8080/login
@@ -21,7 +21,7 @@
 
 - name: register jenkins-server with  port 22
   consul:
-    service_name: "{{ inventory_hostname }}"
+    service_name: "{{ inventory_hostname }} - raiter"
     service_port: "22" 
     interval: 10s
   notify: restart consul
