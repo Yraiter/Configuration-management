@@ -3,13 +3,6 @@
     "id": "filebeat",
     "name": "filebeat",
     "port": 9200,
-    "tags": ["filebeat", "logging"],
-    "checks": [
-      {
-        "name": "filebeat deamon",
-        "args": ["systemctl", "status", "filebeat"],
-        "interval": "60s"
-      }
-    ]
+    "tags": ["filebeat", "logging"]
   }
 }
