@@ -92,7 +92,7 @@
 
 - name: copy elk consul service file
   copy:
-    src: ./files/elk-consul-service.json
+    src: ./files/elasticsearch-service.json
     dest: /etc/consul.d/
     group: consul
     owner: consul
