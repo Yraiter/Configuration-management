@@ -7,7 +7,7 @@
   tasks:
     - name: include consul
       include_role:
-       name: consul-server
+       name: consul
       when: inventory_hostname in lookup('inventory_hostnames', 'consul_server:consul_agent')
     - name: install node exporter
       include_role:
