@@ -69,3 +69,14 @@
     var: node_exporter_service_status.status.ActiveState
   tags:
     - install_ne_services
+
+- name: copy elk consul service file
+  copy:
+    src: ./files/node-exporter-service.json
+    dest: /etc/consul.d/
+    group: consul
+    owner: consul
+  notify:
+    - restart consul service
+  tags:
+    - include_elk_role

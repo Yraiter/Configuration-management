@@ -7,4 +7,4 @@ resolved_conf_path: /etc/systemd/resolved.conf.d
 resolved_conf_file_path:
   dnsmasq: /etc/systemd/resolved.conf
   systemd: /etc/systemd/resolved.conf.d/consul.conf
-dc_name: kandula-dc
+dc_name: opsschool

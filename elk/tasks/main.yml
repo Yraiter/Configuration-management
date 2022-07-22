@@ -90,13 +90,13 @@
     - configure_kibana
 
 
-#- name: copy elk consul service file
-#  copy:
-#    src: ./files/elasticsearch-service1.json
-#    dest: /etc/consul.d/
-#    group: consul
-#    owner: consul
-#  notify:
-#    - restart consul service
-#  tags:
-#    - include_elk_role
+- name: copy elk consul service file
+  copy:
+    src: ./files/elasticsearch-service.json
+    dest: /etc/consul.d/
+    group: consul
+    owner: consul
+  notify:
+    - restart consul service
+  tags:
+    - include_elk_role

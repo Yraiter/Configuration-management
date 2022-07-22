@@ -5,3 +5,9 @@
     name: node_exporter
     enabled: yes
     state: restarted
+
+- name: restart consul service
+  become: yes
+  service:
+    name: consul
+    state: restarted
