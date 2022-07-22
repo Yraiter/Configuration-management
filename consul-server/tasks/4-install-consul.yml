@@ -30,12 +30,9 @@
     update_cache: yes
 
 
-
-
 - name: configure consul
   become: yes
   become_user: consul
-#  become_user: root
   template:
     src: consul.cfg.j2
     dest: "{{ consul_configuration_file_path }}"

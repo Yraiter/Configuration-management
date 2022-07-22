@@ -89,6 +89,7 @@
     - include_elk_role
     - configure_kibana
 
+
 - name: copy elk consul service file
   copy:
     src: ./files/elk-consul-service.json
@@ -100,13 +101,25 @@
   tags:
     - include_elk_role
 
-- name: copy elk consul service file
-  copy:
-    src: ./files/kibana-service.json
-    dest: /etc/consul.d/
-    group: consul
-    owner: consul
-  notify:
-    - restart consul service
-  tags:
-    - include_elk_role
+
+#- name: copy elasticsearch consul service file
+#  copy:
+#    src: ./files/elasticsearch-service.json
+#    dest: /etc/consul.d/
+#    group: consul
+#    owner: consul
+#  notify:
+#    - restart consul service
+#  tags:
+#    - include_elk_role
+#
+#- name: copy kibana consul service file
+#  copy:
+#    src: ./files/kibana-service.json
+#    dest: /etc/consul.d/
+#    group: consul
+#    owner: consul
+#  notify:
+#    - restart consul service
+#  tags:
+#    - include_elk_role

@@ -1,27 +1,22 @@
-{
-  "service": {
-    "id": "kibana-server",
-    "name": "kibana-server",
-    "port": 5601,
-    "tags": ["kibana", "kibana-server", "logging", "elk"],
-    "checks": [
-      {
-        "name": "HTTP API on port 5601",
-        "http": "http://localhost:5601/",
-        "interval": "30s",
-        "timeout": "5s"
-      },
-      {
-        "name": "tcp on port 5601",
-        "tcp": "localhost:5601",
-        "interval": "10s",
-        "timeout": "1s"
-      },
-      {
-        "name": "kibana service",
-        "args": ["systemctl", "status", "kibana"],
-        "interval": "60s"
-      }
-    ]
+  {
+    "service": {
+      "id": "kibana-server",
+      "name": "kibana-server",
+      "port": 5601,
+      "tags": ["kibana", "kibana-server", "logging", "elk"],
+      "checks": [
+        {
+          "name": "HTTP API on port 5601",
+          "http": "http://kibana.yair.live/",
+          "interval": "30s",
+          "timeout": "5s"
+        },
+        {
+          "name": "tcp on port 5601",
+          "tcp": "localhost:5601",
+          "interval": "10s",
+          "timeout": "1s"
+        }
+      ]
+    }
   }
-}
