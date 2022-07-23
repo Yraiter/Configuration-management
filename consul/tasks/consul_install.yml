@@ -26,15 +26,25 @@
     - /etc/consul.d
     - /run/consul
 
+- name: Remove apt lock file
+  file:
+    state: absent
+    path: "/var/lib/dpkg/lock"
+
 - name: add Hashicorp's official GPG key
   apt_key:
     url: https://apt.releases.hashicorp.com/gpg
     state: present
 
 - name: add Hashicorp main repository to apt
+#  become: true
   apt_repository:
     repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ansible_distribution_release}} main"
     state: present
+#  register: result
+#  until: result is not failed
+#  retries: 5
+#  delay: 5
 
 - name: System details
   debug: msg="{{ item }}"
@@ -44,12 +54,17 @@
   - "{{ ansible_distribution_major_version }}"
 
 - name: install dnsmasq
+  become: true
   apt:
     name:
       - dnsmasq
     state: present
     update_cache: yes
   when: ( resolved_opt  == 'dnsmasq' )
+#  register: result
+#  until: result is not failed
+#  retries: 5
+#  delay: 5
 
 
 - name: install consul
