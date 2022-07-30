@@ -8,3 +8,4 @@
 /HW1
 /HW2
 /consul-inventory
+*.tfstate

@@ -1,0 +1,10 @@
+name: kandula
+deployment:
+  version: latest
+
+service: {}
+
+ingress:
+  arn: ""
+#  arn: {{ ${DATADOG_SITE} | default "" | quote }}
+

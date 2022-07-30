@@ -35,6 +35,10 @@
   apt_repository:
     repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ansible_distribution_release}} main"
     state: present
+<<<<<<< Updated upstream:consul/tasks/consul_install.yml
+=======
+
+>>>>>>> Stashed changes:ansible/consul/tasks/consul_install.yml
 
 - name: System details
   debug: msg="{{ item }}"
@@ -48,7 +52,10 @@
     name:
       - dnsmasq
     state: present
-    update_cache: yes
+    force_apt_get: true
+    dpkg_options: 'allow-remove-essential'
+#    Need to Test if its make the installtion faster
+#    update_cache: yes
   when: ( resolved_opt  == 'dnsmasq' )
 
 
