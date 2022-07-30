@@ -35,10 +35,7 @@
   apt_repository:
     repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ansible_distribution_release}} main"
     state: present
-<<<<<<< Updated upstream:consul/tasks/consul_install.yml
-=======
 
->>>>>>> Stashed changes:ansible/consul/tasks/consul_install.yml
 
 - name: System details
   debug: msg="{{ item }}"
