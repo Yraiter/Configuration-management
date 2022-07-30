@@ -69,8 +69,6 @@
     var: node_exporter_service_status.status.ActiveState
   tags:
     - install_ne_services
-<<<<<<< Updated upstream:node-exporter/tasks/main.yml
-=======
 
 - name: copy node-exporter to consul service file
   copy:
@@ -82,4 +80,3 @@
     - restart consul service
   tags:
     - include_elk_role
->>>>>>> Stashed changes:ansible/node-exporter/tasks/main.yml
