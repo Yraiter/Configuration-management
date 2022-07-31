@@ -17,7 +17,7 @@
     interval: 10s
     http: http://localhost:8080/login
   notify: restart consul
-  when : ( inventory_hostname  == 'jenkins-server' )
+  when: ( inventory_hostname  == 'jenkins-server' )
 
 - name: register jenkins-server with  port 22
   consul:

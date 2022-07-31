@@ -60,11 +60,10 @@
       - dnsmasq
     state: present
     update_cache: yes
-  when: ( resolved_opt  == 'dnsmasq' )
-#  register: result
-#  until: result is not failed
-#  retries: 5
-#  delay: 5
+  when:
+    - ( resolved_opt  == 'dnsmasq' )
+    - ansible_facts.services['service-name.dnsmasq'] is defined
+
 
 
 - name: install consul
@@ -81,7 +80,9 @@
     mode: 0644
   notify:
     - restart dnsmasq
-  when: ( resolved_opt  == 'dnsmasq' )
+  when:
+    - ( resolved_opt  == 'dnsmasq' )
+    - ansible_facts.services['service-name.dnsmasq'] is defined
 
 - name: Forward tcp port 53 to 8600
   ansible.builtin.iptables:
